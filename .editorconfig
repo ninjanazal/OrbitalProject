@@ -1,0 +1,89 @@
+root = true
+
+[*]
+charset = utf-8
+
+# C# files
+[*.cs]
+
+# Indentation and spacing
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# New line preferences
+end_of_line = crlf
+insert_final_newline = true
+max_line_length = 120
+trim_trailing_whitespace = true
+
+
+# C# formatting rules
+csharp_new_line_before_open_brace = none
+csharp_new_line_before_else = false
+csharp_new_line_before_catch = false
+csharp_new_line_before_finally = false
+
+# Naming rule: Function parameters should be prefixed with "p_"
+dotnet_naming_rule.parameters_should_be_prefixed.severity = warning
+dotnet_naming_rule.parameters_should_be_prefixed.symbols = parameters
+dotnet_naming_rule.parameters_should_be_prefixed.style = parameter_prefix_style
+
+dotnet_naming_symbols.parameters.applicable_kinds = parameter
+dotnet_naming_symbols.parameters.applicable_accessibilities = *
+dotnet_naming_symbols.parameters.required_modifiers = 
+
+dotnet_naming_style.parameter_prefix_style.required_prefix = p_
+dotnet_naming_style.parameter_prefix_style.capitalization = camel_case
+
+# Naming rule: Function (method) names should be PascalCase
+dotnet_naming_rule.methods_should_be_pascal_case.severity = warning
+dotnet_naming_rule.methods_should_be_pascal_case.symbols = methods
+dotnet_naming_rule.methods_should_be_pascal_case.style = pascal_case_style
+
+dotnet_naming_symbols.methods.applicable_kinds = method
+dotnet_naming_symbols.methods.applicable_accessibilities = *
+dotnet_naming_symbols.methods.required_modifiers = 
+
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+dotnet_naming_style.pascal_case_style.required_prefix =
+dotnet_naming_style.pascal_case_style.required_suffix =
+
+# Naming rule: Private fields should have an "m_" prefix and be camelCase
+dotnet_naming_rule.private_fields_must_be_camel_case.severity = warning
+dotnet_naming_rule.private_fields_must_be_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_must_be_camel_case.style = m_prefix_camel_case_style
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_fields.required_modifiers = 
+
+dotnet_naming_style.m_prefix_camel_case_style.capitalization = camel_case
+dotnet_naming_style.m_prefix_camel_case_style.required_prefix = m_
+dotnet_naming_style.m_prefix_camel_case_style.required_suffix =
+
+# Naming rule: Constants should have a "K" prefix and be ALL_CAPS
+dotnet_naming_rule.constants_should_be_all_caps.severity = warning
+dotnet_naming_rule.constants_should_be_all_caps.symbols = constants
+dotnet_naming_rule.constants_should_be_all_caps.style = k_prefix_all_caps_style
+
+dotnet_naming_symbols.constants.applicable_kinds = field
+dotnet_naming_symbols.constants.applicable_accessibilities = *
+dotnet_naming_symbols.constants.required_modifiers = const
+
+dotnet_naming_style.k_prefix_all_caps_style.capitalization = all_upper
+dotnet_naming_style.k_prefix_all_caps_style.required_prefix = k_
+dotnet_naming_style.k_prefix_all_caps_style.required_suffix =
+
+# Naming rule: Public members should be camelCase
+dotnet_naming_rule.public_members_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.public_members_should_be_camel_case.symbols = public_members
+dotnet_naming_rule.public_members_should_be_camel_case.style = pascal_case_style
+
+dotnet_naming_symbols.public_members.applicable_kinds = field, property
+dotnet_naming_symbols.public_members.applicable_accessibilities = public
+dotnet_naming_symbols.public_members.required_modifiers = 
+
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+dotnet_naming_style.camel_case_style.required_prefix =
+dotnet_naming_style.camel_case_style.required_suffix =
