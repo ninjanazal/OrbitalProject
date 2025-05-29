@@ -1,4 +1,5 @@
 import argparse
+from scripts import prepare_dataset
 
 
 def main():
@@ -17,7 +18,7 @@ def main():
 
     if args.prepare:
         print("Preparing data")
-        pass
+        prepare_dataset.run("data/archive", "data")
 
 
 if __name__ == "__main__":
