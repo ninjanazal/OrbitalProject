@@ -17,8 +17,8 @@ def main():
     args = parser.parse_args()
 
     if args.prepare:
-        print("Preparing data")
-        prepare_dataset.run("data/archive", "data")
+        print(">> Preparing data")
+        prepare_dataset.run("data/archive/PetImages", "data")
 
 
 if __name__ == "__main__":

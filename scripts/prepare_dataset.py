@@ -37,6 +37,9 @@ def run(
         train_images = images[:split_idx]
         val_images = images[split_idx:]
 
+        print(">> {0} imgs for training [{1}]".format(len(train_images), label))
+        print(">> {0} imgs for validation [{1}]".format(len(val_images), label))
+
         ensure_clean_dir(train_dir / label)
         ensure_clean_dir(val_dir / label)
 
@@ -55,7 +58,7 @@ def move_images(image_list: List[Path], dest_dir: Path, label: str) -> None:
     """
     for img in image_list:
         dest_path = dest_dir / label / img.name
-        shutil.move(str(img), str(dest_path))
+        shutil.copy(str(img), str(dest_path))
 
 
 def ensure_clean_dir(path: Path) -> None:
