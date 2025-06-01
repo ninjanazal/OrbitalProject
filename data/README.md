@@ -1,11 +1,6 @@
 #DataSet from [Cats-vs-Dogs](https://www.kaggle.com/datasets/shaunthesheep/microsoft-catsvsdogs-dataset/data)
-Download and extract to this folde
-
+Download and extract to this folder
+(or with curl)
 ```
-The expected structure for the raw data is:
-
-data
-|- archive
-   |- Cat
-   |- Dog 
-```
+curl -L -o ./data/catsvsdogs-dataset.zip https://www.kaggle.com/api/v1/datasets/download/shaunthesheep/microsoft-catsvsdogs-dataset
+``` 

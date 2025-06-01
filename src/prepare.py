@@ -25,6 +25,9 @@ def run(
 
     random.seed(seed)
 
+    if not os.path.exists(source_path):
+        print(f"Path not found [{source_path}]")
+
     for label_dir in source_path.iterdir():
         if not label_dir.is_dir():
             continue

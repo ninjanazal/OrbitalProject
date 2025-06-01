@@ -9,5 +9,8 @@ venv/
 data/*/
 data/*.zip
 
+#train
+*.pth
+
 # VisualStudioCode
 .vscode/*
