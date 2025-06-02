@@ -1,6 +1,9 @@
 import argparse
 from src import *
 
+MODEL_NAME: str = "catvsdog_model.pth"
+
+
 def main():
     parser = argparse.ArgumentParser(description="Image Classifier orchestrator")
 
@@ -24,8 +27,11 @@ def main():
         prepare.run("data/archive/PetImages", "data")
 
     if args.train:
-        train.run("data/train", "data/val")
+        train.run("data/train", "data/val", MODEL_NAME)
         print(">> Training model")
+
+    if args.evaluate:
+        evaluate.run("data/val", MODEL_NAME)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 from torchvision.datasets import ImageFolder
 from PIL import UnidentifiedImageError
 
+
 class SafeImageFolder(ImageFolder):
     """
     A subclass of torchvision.datasets.ImageFolder that handles corrupted images gracefully.
@@ -41,7 +42,9 @@ class SafeImageFolder(ImageFolder):
             return super().__getitem__(index)
         except UnidentifiedImageError:
             # Handle corrupted image files by printing a warning and skipping
-            print(f"Warning: Skipping corrupted image at index {index}: {self.imgs[index][0]}")
+            print(
+                f"Warning: Skipping corrupted image at index {index}: {self.imgs[index][0]}"
+            )
 
             next_index = index + 1
             if next_index < len(self.imgs):
@@ -49,4 +52,6 @@ class SafeImageFolder(ImageFolder):
                 return self.__getitem__(next_index)
             else:
                 # No more images left to try, raise error to avoid infinite recursion
-                raise RuntimeError("No valid images found after skipping corrupted ones.")
+                raise RuntimeError(
+                    "No valid images found after skipping corrupted ones."
+                )

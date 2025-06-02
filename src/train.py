@@ -7,7 +7,15 @@ from pathlib import Path
 from .tools import SafeImageFolder
 
 
-def run(train_dir: str, val_dir: str, num_epochs: int = 5, batch_size: int = 32, lr: float = 0.001, print_every: int = 10) -> None:
+def run(
+    train_dir: str,
+    val_dir: str,
+    model_name: str,
+    num_epochs: int = 5,
+    batch_size: int = 32,
+    lr: float = 0.001,
+    print_every: int = 10,
+) -> None:
     """
     Train a CNN model (ResNet18) to classify images in two classes (e.g., cats vs dogs).
 
@@ -25,11 +33,13 @@ def run(train_dir: str, val_dir: str, num_epochs: int = 5, batch_size: int = 32,
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    transform = transforms.Compose([
-        transforms.Resize((128, 128)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5], std=[0.5])
-    ])
+    transform = transforms.Compose(
+        [
+            transforms.Resize((128, 128)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5]),
+        ]
+    )
 
     train_dataset = SafeImageFolder(train_dir, transform=transform)
     val_dataset = SafeImageFolder(val_dir, transform=transform)
@@ -46,6 +56,7 @@ def run(train_dir: str, val_dir: str, num_epochs: int = 5, batch_size: int = 32,
     val_targets = [label for _, label in val_dataset.imgs]
 
     from collections import Counter
+
     train_counts = Counter(train_targets)
     val_counts = Counter(val_targets)
 
@@ -92,13 +103,17 @@ def run(train_dir: str, val_dir: str, num_epochs: int = 5, batch_size: int = 32,
             if batch_idx % print_every == 0 or batch_idx == len(train_loader):
                 avg_loss = running_loss / batch_idx
                 accuracy_so_far = correct / (batch_idx * batch_size)
-                print(f"Epoch {epoch + 1} [{batch_idx}/{len(train_loader)}], "
-                      f"Avg Loss: {avg_loss:.4f}, Accuracy so far: {accuracy_so_far:.4f}")
+                print(
+                    f"Epoch {epoch + 1} [{batch_idx}/{len(train_loader)}], "
+                    f"Avg Loss: {avg_loss:.4f}, Accuracy so far: {accuracy_so_far:.4f}"
+                )
 
         epoch_accuracy = correct / len(train_dataset)
-        print(f"Epoch {epoch + 1} completed. Loss: {running_loss/len(train_loader):.4f}, "
-              f"Accuracy: {epoch_accuracy:.4f}\n")
+        print(
+            f"Epoch {epoch + 1} completed. Loss: {running_loss/len(train_loader):.4f}, "
+            f"Accuracy: {epoch_accuracy:.4f}\n"
+        )
 
-    model_path = Path("model.pth")
+    model_path = Path(model_name)
     torch.save(model.state_dict(), model_path)
     print(f"Model saved to {model_path.resolve()}")

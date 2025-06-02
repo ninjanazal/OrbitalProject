@@ -6,7 +6,9 @@ from zipfile import ZipFile
 DATA_FOLDER = "./data"  # Root directory for data
 ZIP_FILENAME = "catsvsdogs-dataset.zip"  # Name of the zip file
 ZIP_FILE = os.path.join(DATA_FOLDER, ZIP_FILENAME)  # Full path to the zip file
-UNZIP_DIR = os.path.join(DATA_FOLDER, "archive")  # Directory to extract contents of the zip
+UNZIP_DIR = os.path.join(
+    DATA_FOLDER, "archive"
+)  # Directory to extract contents of the zip
 
 
 def run():
@@ -23,7 +25,7 @@ def run():
     Raises:
         FileNotFoundError: If the expected zip file does not exist.
     """
-    
+
     # Check if the zip file exists; raise an error if not
     if not os.path.exists(ZIP_FILE):
         raise FileNotFoundError(f"Expected zip file not found: {ZIP_FILE}")
@@ -33,7 +35,7 @@ def run():
         shutil.rmtree(UNZIP_DIR)
 
     print("Unzipping dataset...")
-    
+
     # Create the extraction directory
     os.makedirs(UNZIP_DIR, exist_ok=True)
 
@@ -43,5 +45,5 @@ def run():
 
     # Delete the zip file after extraction to free up space
     os.remove(ZIP_FILE)
-    
+
     print("Dataset ready at:", UNZIP_DIR)
