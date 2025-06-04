@@ -27,13 +27,15 @@ Each part of this project is meant to be instructive and transparent, emphasizin
 We use the **Cats vs Dogs** dataset (e.g., from Kaggle), organized into folders like this:
 
 
->data/
->├── train/
->│ ├── cat/
->│ └── dog/
->└── val/
->├── cat/
->└── dog/
+``` 
+data/
+├── train/
+│ ├── cat/
+│ └── dog/
+└── val/
+├── cat/
+└── dog/
+```
 
 Each subfolder represents a class label. This format is compatible with `torchvision.datasets.ImageFolder`.
 
